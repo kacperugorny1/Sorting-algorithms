@@ -27,6 +27,8 @@ bool operator> (const movie& movie1, const movie& movie2) { return movie1.rating
 bool operator<= (const movie& movie1, const movie& movie2) { return movie1.rating <= movie2.rating; }
 bool operator>= (const movie& movie1, const movie& movie2) { return movie1.rating >= movie2.rating; }
 
+
+//isSorted func - sprawdza czy jest posortowane rosn¹co
 template<typename T>
 int isSorted(T array[], int l, int r) {
     T temp = array[l];

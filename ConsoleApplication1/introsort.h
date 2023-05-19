@@ -4,62 +4,43 @@
 #include "quicksort.h"
 
 
-/*
-tree on array:
-start in ind 1
-father on i:
-    son left 2i + 1
-    son right 2i + 2
-
-
-
-*/
 
 template<typename T>
 void heapify(T arr[], int n, int i, int left_ind) {
-    int largest = i + left_ind; // Initialize largest as root
-    int l = left_ind + 2 * i + 1; // left = 2*i + 1
-    int r = left_ind + 2 * i + 2; // right = 2*i + 2
+    int largest = i + left_ind; 
+    int l = left_ind + 2 * i + 1; 
+    int r = left_ind + 2 * i + 2; 
 
-    // If left child is larger than root
+    
     if (l < n + left_ind && arr[l] > arr[largest])
         largest = l;
 
-    // If right child is larger than largest so far
+    
     if (r < n + left_ind && arr[r] > arr[largest])
         largest = r;
 
-    // If largest is not root
+   
     if (largest != i + left_ind) {
-        std::swap(arr[i + left_ind], arr[largest]);
-
-        // Recursively heapify the affected sub-tree
+        std::swap(arr[i + left_ind], arr[largest])
         heapify(arr, n, largest - left_ind, left_ind);
     }
 }
 
 template<typename T>
 void heapSort(T arr[], int left_ind, int right_ind) {
-    //kopiec
+
     int n = right_ind - left_ind + 1;
-    for (int i = n / 2 - 1; i >= 0; i--)
+    //utwórz kopiec
+    for (int i = n / 2 - 1; i >= 0; --i)
         heapify(arr, n, i, left_ind);
 
-    //usun najwiekszy, kopcuj dalej
-    for (int i = n - 1; i > 0; i--) {
+    //usuñ najwiêkszy, utwórz kopiec
+    for (int i = n - 1; i > 0; --i) {
         std::swap(arr[left_ind], arr[left_ind + i]);
 
         heapify(arr, i, 0, left_ind);
     }
 }
-
-
-
-
-
-
-
-
 
 template<typename T>
 void insertionSort(T arr[], int left_ind, int right_ind) {
@@ -88,10 +69,8 @@ void introsort_step(T array[], int left_ind, int right_ind, int maxdepth) {
 
     }
     else {
-        int pivot = left_ind + len / 2;
-        std::swap(array[pivot], array[right_ind]);
-        pivot = partition(array, left_ind, right_ind);
-        introsort_step(array, left_ind, pivot - 1, maxdepth - 1);
+        int pivot = partition(array, left_ind, right_ind);
+        introsort_step(array, left_ind, pivot, maxdepth - 1);
         introsort_step(array, pivot + 1, right_ind, maxdepth - 1);
 
     }

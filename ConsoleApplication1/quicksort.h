@@ -4,29 +4,36 @@
 
 template<typename T>
 int partition(T array[], int a, int b) {
-    int l = a;
-    int r = b - 1;
-    while (l <= r) {
-        if ((array[l] > array[b]) && (array[r] < array[b])) {
-            std::swap(array[l], array[r]);
-        }
-        if (array[l] <= array[b])
-            ++l;
-        if (array[r] >= array[b])
-            --r;
+
+    //int pivot = a + (b - a) / 2;
+    //std::swap(array[pivot], array[b]);
+    T pivot = array[a + (int)std::floor((b - a) / 2)];
+    int l = a - 1; //a  
+    int r = b + 1; //b-1
+    
+    while (1 == 1) {
+        do
+        {
+            l = l + 1;
+        } while (array[l] < pivot);
+
+        do
+        {
+            r = r - 1;
+        } while (array[r] > pivot);
+
+        if (l >= r)
+            return r;
+        std::swap(array[l], array[r])
     }
-    std::swap(array[l], array[b]);
-    return l;
 }
 
 template<typename T>
 void quickSort(T array[], int a, int b) {
     if (a >= b)
         return;
-    int pivot = a + (b - a) / 2;
-    std::swap(array[pivot], array[b]);
-    pivot = partition(array, a, b);
-    quickSort(array, a, pivot - 1);
+    int pivot = partition(array, a, b);
+    quickSort(array, a, pivot);
     quickSort(array, pivot + 1, b);
 
 
