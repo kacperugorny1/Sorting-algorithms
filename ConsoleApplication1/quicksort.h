@@ -24,7 +24,7 @@ int partition(T array[], int a, int b) {
 
         if (l >= r)
             return r;
-        std::swap(array[l], array[r])
+        std::swap(array[l], array[r]);
     }
 }
 

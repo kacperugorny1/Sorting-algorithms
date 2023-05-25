@@ -21,7 +21,7 @@ void heapify(T arr[], int n, int i, int left_ind) {
 
    
     if (largest != i + left_ind) {
-        std::swap(arr[i + left_ind], arr[largest])
+        std::swap(arr[i + left_ind], arr[largest]);
         heapify(arr, n, largest - left_ind, left_ind);
     }
 }
